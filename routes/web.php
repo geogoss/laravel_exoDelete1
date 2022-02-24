@@ -16,17 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [MemberController::class, 'index']);
+
+Route::get('/men', [MemberController::class, 'menMember']);
+Route::get('/women', [MemberController::class, 'womenMember']);
 Route::get('/create', [MemberController::class, 'create']);
+
 Route::post('/store', [MemberController::class, 'store']);
 Route::delete('/delete/{id}', [MemberController::class, 'destroy']);
-
-Route::get('men', [MemberController::class, 'menMember']);
-
-Route::get('women', function () {
-    $members = Member::all();
-    $men = Member::where('gender', 'homme')->limit(3)->get();
-    $women = Member::where('gender', 'femme')->get();
-
-    return view('pages.women', compact('members', 'men', 'women'));
-});
 

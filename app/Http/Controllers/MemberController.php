@@ -11,18 +11,24 @@ class MemberController extends Controller
 
     public function index () {
         $members = Member::all();
-        $men = Member::where('gender', 'Homme')->limit(3)->get();
-        $women = Member::where('gender', 'Femme')->get();
-        return view('welcome', compact('members', 'men', 'women'));
+        // $men = Member::where('gender', 'Homme')->limit(3)->get();
+        // $women = Member::where('gender', 'Femme')->get();
+        return view('welcome', compact('members'));
     }
 
     public function menMember () {
-        $members = Member::all();
+        // $members = Member::all();
         $men = Member::where('gender', 'homme')->limit(3)->get();
-        $women = Member::where('gender', 'femme')->get();
-        return view('pages.men', compact('members', 'men', 'women'));
+        // $women = Member::where('gender', 'femme')->get();
+        return view('pages.men', compact('men'));
     }
 
+    public function womenMember () {
+        // $members = Member::all();
+        // $men = Member::where('gender', 'homme')->limit(3)->get();
+        $women = Member::where('gender', 'femme')->get();
+        return view('pages.women', compact('women'));
+    }
 
 
    public function create () {
